@@ -47,6 +47,9 @@ class MotorcycleController {
     const { id } = this.req.params;
     try {
       const newMoto = await this.service.findById(id);
+      if (!newMoto) {
+        return this.res.status(404).json({ message: 'Motorcycle not found' });
+      }
       return this.res.status(200).json(newMoto);
     } catch (error) {
       this.next(error);
@@ -58,7 +61,7 @@ class MotorcycleController {
     const motorcycle = this.req.body;
     try {
       const moto = await this.service.updateById(id, motorcycle);
-      if (!moto) {
+      if (!moto || moto === null) {
         return this.res.status(404).json({ message: 'Motorcycle not found' });
       }
       return this.res.status(200).json(moto);
