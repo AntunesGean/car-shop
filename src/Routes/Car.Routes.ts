@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import CarController from '../Controllers/Car.Controller';
+import idValidation from '../Middlewares/idValidation';
 
 const carRoutes = Router();
 
@@ -15,6 +16,7 @@ carRoutes.get(
 
 carRoutes.get(
   '/cars/:id',
+  idValidation,
   (req, res, next) => new CarController(req, res, next).findById(),
 );
 

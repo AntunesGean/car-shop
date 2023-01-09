@@ -1,7 +1,7 @@
 import { Model, Schema, model, models } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 
-export default class Car {
+class Car {
   private schema: Schema;
   private model: Model<ICar>;
 
@@ -30,3 +30,5 @@ export default class Car {
     return this.model.findOne({ _id });
   }
 }
+
+export default Car;

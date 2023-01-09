@@ -2,7 +2,7 @@ import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarModel from '../Models/Car.Model';
 
-export default class CarService {
+class CarService {
   private createCar(car: ICar | null): Car | null {
     if (car) {
       return new Car(car);
@@ -25,7 +25,10 @@ export default class CarService {
 
   public async findById(id: string) {
     const carModel = new CarModel();
-    const cars = await carModel.findById(id);
-    return cars;
+    const car = await carModel.findById(id);
+    const carOne = this.createCar(car);
+    return carOne;
   }
 }
+
+export default CarService;
