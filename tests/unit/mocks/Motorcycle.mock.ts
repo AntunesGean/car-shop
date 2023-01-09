@@ -1,8 +1,29 @@
-import IMotorcycle from '../../../src/Interfaces/IMotorcycle';
+import Motorcycle from '../../../src/Domains/Motorcycle';
 
-export const allMotos: IMotorcycle[] = [
+export const motoOne = {
+  model: 'Honda Cb 600f a',
+  year: 2005,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+export const motoById = {
+  id: '6348513f34c397abcad040b2',
+  model: 'Honda Cb 600f Hornet',
+  year: 2005,
+  color: 'Yellow',
+  status: true,
+  buyValue: 30.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+export const motosAll = [
   {
-    id: '634852326b35b59438fbea2f',
+    id: '6348513f34c397abcad040b2',
     model: 'Honda Cb 600f Hornet',
     year: 2005,
     color: 'Yellow',
@@ -23,34 +44,8 @@ export const allMotos: IMotorcycle[] = [
   },
 ];
 
-export const motoInput: IMotorcycle = {
-  model: 'Honda Cb 600f a',
-  year: 2005,
-  color: 'Yellow',
-  status: true,
-  buyValue: 30.000,
-  category: 'Street',
-  engineCapacity: 600,
-};
+export const motoDomain = new Motorcycle(motosAll[0]);
 
-export const motoOutput: IMotorcycle = {
-  id: '6348513f34c397abcad040b2',
-  model: 'Honda Cb 600f Hornet',
-  year: 2005,
-  color: 'Yellow',
-  status: true,
-  buyValue: 30.000,
-  category: 'Street',
-  engineCapacity: 600,
-};
+export const otherMotoDomain = new Motorcycle(motosAll[1]);
 
-export const updatedMoto: IMotorcycle = {
-  id: '634852326b35b59438fbea2f',
-  model: 'Honda Cb 600f a',
-  year: 2014,
-  color: 'Red',
-  status: true,
-  buyValue: 45.000,
-  category: 'Street',
-  engineCapacity: 600,
-};
+export const motoList = [motoDomain, otherMotoDomain];

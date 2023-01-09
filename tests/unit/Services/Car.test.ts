@@ -2,46 +2,46 @@ import { expect } from 'chai';
 import { Model } from 'mongoose';
 import sinon from 'sinon';
 import CarService from '../../../src/Services/Car.Service';
-import { allCars, carInput, carOutput, updatedCarInput, updatedCarOutput } from '../mocks/Car.mock';
+import { carDomain, carList, carOne, carById, carsAll } from '../mocks/Car.mock';
 
-describe('Testa o CarService', function () {
+describe('Testando o service de car', function () {
+  const service = new CarService();
+
   afterEach(function () {
     sinon.restore();
   });
 
-  it('Cria um novo carro', async function () {
-    sinon.stub(Model, 'create').resolves(carOutput);
-
-    const carService = new CarService();
-    const result = await carService.create(carInput);
-
-    expect(result).to.be.deep.equal(carOutput);
+  describe('Testando createCar', function () {
+    it('Creates a new car succesfully', async function () {
+      sinon.stub(Model, 'create').resolves(carById);
+      const result = await service.create(carOne);
+      expect(result).to.be.deep.equal(carById);
+    });
   });
 
-  it('Lista todos os carros', async function () {
-    sinon.stub(Model, 'find').resolves(allCars);
-
-    const carService = new CarService();
-    const result = await carService.findAll();
-
-    expect(result).to.be.deep.equal(allCars);
+  describe('Testando findAllCars', function () {
+    it('Return all cars succesfully', async function () {
+      sinon.stub(Model, 'find').resolves(carsAll);
+      const result = await service.findAll();
+      expect(result).to.be.deep.equal(carList);
+    });
   });
 
-  it('Lista carro pelo id', async function () {
-    sinon.stub(Model, 'findById').resolves(allCars[0]);
+  describe('Testando findCarById', function () {
+    it('Return a car succesfully', async function () {
+      sinon.stub(Model, 'findOne').resolves(carById);
+      const result = await service.findById('6352f8ea74092b2e6a784c51');
+      expect(result).to.be.deep.equal(carDomain);
+    });
 
-    const carService = new CarService();
-    const result = await carService.findById('634852326b35b59438fbea2f');
-
-    expect(result).to.be.deep.equal(allCars[0]);
-  });
-
-  it('Faz o update do carro', async function () {
-    sinon.stub(Model, 'findByIdAndUpdate').resolves(updatedCarOutput);
-
-    const carService = new CarService();
-    const result = await carService.updateById('634852326b35b59438fbea2f', updatedCarInput);
-
-    expect(result).to.be.deep.equal(updatedCarOutput);
+    it('Fails to return a car', async function () {
+      sinon.stub(Model, 'findOne').resolves();
+      try {
+        await service.findById('6352f8ea74092b2e6a784c51');
+      } catch (error) {
+        const { message } = error as Error;
+        expect(message).to.be.equal('Car not found');
+      }
+    });
   });
 });

@@ -1,6 +1,6 @@
-import ICar from '../../../src/Interfaces/ICar';
+import Car from '../../../src/Domains/Car';
 
-export const carInput: ICar = {
+export const carOne = {
   model: 'Marea',
   year: 2002,
   color: 'Black',
@@ -10,8 +10,8 @@ export const carInput: ICar = {
   seatsQty: 5,
 };
 
-export const carOutput: ICar = {
-  id: '6348513f34c397abcad040b2',
+export const carById = {
+  id: '6352f8ea74092b2e6a784c51',
   model: 'Marea',
   year: 2002,
   color: 'Black',
@@ -21,14 +21,14 @@ export const carOutput: ICar = {
   seatsQty: 5,
 };
 
-export const allCars: ICar[] = [
+export const carsAll = [
   {
-    id: '634852326b35b59438fbea2f',
+    id: '6352f8ea74092b2e6a784c51',
     model: 'Marea',
     year: 2002,
     color: 'Black',
     status: true,
-    buyValue: 15.990,
+    buyValue: 15.99,
     doorsQty: 4,
     seatsQty: 5,
   },
@@ -37,30 +37,14 @@ export const allCars: ICar[] = [
     model: 'Tempra',
     year: 1995,
     color: 'Black',
-    status: false,
     buyValue: 39,
     doorsQty: 2,
     seatsQty: 5,
   },
 ];
 
-export const updatedCarInput: ICar = {
-  model: 'Marea',
-  year: 1992,
-  color: 'Red',
-  status: true,
-  buyValue: 12.000,
-  doorsQty: 2,
-  seatsQty: 5,
-};
+export const carDomain = new Car(carsAll[0]);
 
-export const updatedCarOutput: ICar = {
-  id: '634852326b35b59438fbea2f',
-  model: 'Marea',
-  year: 1992,
-  color: 'Red',
-  status: true,
-  buyValue: 12.000,
-  doorsQty: 2,
-  seatsQty: 5,
-};
+export const otherCarDomain = new Car(carsAll[1]);
+
+export const carList = [carDomain, otherCarDomain];
