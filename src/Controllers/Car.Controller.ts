@@ -56,22 +56,19 @@ class CarController {
     }
   }
 
-  // public async updateById() {
-  //   const { id } = this.req.params;
-  //   const car = this.req.body;
-  //   try {
-  //     const cars = await this.service.updateById(id, car);
-  //     if (!cars) {
-  //       return this.res.status(404).json({ message: 'Car not found' });
-  //     }
-  //     if (!isValidObjectId(id)) {
-  //       return this.res.status(422).json({ message: 'Invalid mongo id' });
-  //     }
-  //     return this.res.status(200).json(cars);
-  //   } catch (error) {
-  //     this.next(error);
-  //   }
-  // }
+  public async updateById() {
+    const { id } = this.req.params;
+    const car = this.req.body;
+    try {
+      const cars = await this.service.updateById(id, car);
+      if (!cars) {
+        return this.res.status(404).json({ message: 'Car not found' });
+      }
+      return this.res.status(200).json(cars);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 export default CarController;

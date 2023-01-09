@@ -29,6 +29,13 @@ class CarService {
     const carOne = this.createCar(car);
     return carOne;
   }
+
+  public async updateById(id: string, car: ICar) {
+    const carModel = new CarModel();
+    const cars = await carModel.updateById(id, car);
+    const carUpdate = this.createCar(cars);
+    return carUpdate;
+  }
 }
 
 export default CarService;
